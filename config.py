@@ -2,7 +2,7 @@ class Config:
     '''
     Primary configurations for the application
     '''
-    pass
+    SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://kevin:1234@localhost/pitchesdb"
 class DevConfig(Config):
     '''
     Development Configuratons

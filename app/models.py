@@ -19,7 +19,7 @@ class User(db.Model):
         '''
         raise AttributeError('You cannot read the password attribute')
 
-    @property.setter
+    @password.setter
     def password(self,password):
         '''
         Generates password hash

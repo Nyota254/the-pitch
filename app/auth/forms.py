@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms.validators import Email,Required,EqualTo,ValidationError
-from wtforms import StringField,SubmitField,PasswordField
+from wtforms import StringField,SubmitField,PasswordField,BooleanField
 from ..models import User
 
 class RegistrationForm(FlaskForm):
@@ -19,4 +19,9 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('That username is taken please pick another')
         
 
+class LoginForm(FlaskForm):
+    email = StringField('Please enter your Email',validators=[Required()])
+    password = PasswordField('Please enter your Password',validators=[Required()])
+    remember = BooleanField('remember me')
+    submit = SubmitField('Log In')
 

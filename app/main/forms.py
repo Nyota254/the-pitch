@@ -5,4 +5,4 @@ from wtforms.validators import Required
 
 def PitchUploadForm(FlaskForm):
     pitch = StringField('Pitch',validators=[Required()])
-    category = SelectField('')
+    category = SelectField('Category',choices=[('Interview','Interview'),('Pick-up','Pick-up'),])

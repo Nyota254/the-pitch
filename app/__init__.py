@@ -2,10 +2,14 @@ from flask import Flask
 from flask_bootstrap import Bootstrap
 from config import configurations
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
 
 app = Flask(__name__)
 bootstrap = Bootstrap()
 db = SQLAlchemy()
+login_manager = LoginManager()
+login_manager.session_protection = 'strong'
+login_manager.login_view = 'auth.login'
 
 def create_app(configname):
 
@@ -19,5 +23,6 @@ def create_app(configname):
 
     bootstrap.init_app(app)
     db.init_app(app)
+    login_manager.init_app(app)
 
     return app

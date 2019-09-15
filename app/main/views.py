@@ -1,7 +1,7 @@
 from . import main
 from flask import render_template,redirect,url_for
 from flask_login import login_required,current_user,login_user,logout_user
-from .forms import PitchUploadForm
+from .forms import PitchUploadForm,CommentsForm
 from .. import db
 from ..models import Pitch,Comment,User
 
@@ -28,8 +28,18 @@ def add_pitch():
     return render_template('addpitch.html',title = title,pitchform = form)
 
 
-@main.route('/pitchdiscussion/comment')
+@main.route('/pitchdiscussion/<int:pitch_id>/comment',methods=['POST','GET'])
 @login_required
-def comment():
+def comment(pitch_id):
+    comment = CommentsForm()
+    if comment.validate_on_submit():
+        comment = comment.comment.data
+        new_comment = Comment(comment = comment,user = current_user)
+        db.session.add(new_comment)
+        db.session.commit()
+        # return redirect(url_for('.comment'))
+    pitch = Pitch.query.get_or_404(pitch_id)
+    # comments = Comment.get_comments(pitch_id)
+    comments = Comment.query.all()
     title = 'Pitch Discussion'
-    return render_template('pitchdiscussion.html',title = title)
+    return render_template('pitchdiscussion.html',title = title,pitch = pitch,comment_form = comment,comments=comments)

@@ -13,7 +13,8 @@
                 <div class="panel panel-default">
                 <div class="panel-body">
                 <p>{{ pitch.pitch }}</p>
-                <p><strong>by: {{ pitch.user }}</strong></p>
+                <p><strong>by: {{ pitch.user.username }}</strong></p>
+                <a href="{{url_for('main.comment',pitch_id=pitch.id)}}" class="btn btn-success">Comment</a>
             </div>
             </div>
             </div>
@@ -28,7 +29,8 @@
                     <div class="panel panel-default">
                     <div class="panel-body">
                 <p>{{ pitch.pitch }}</p>
-                <p><strong>by: {{ pitch.user }}</strong></p>
+                <p><strong>by: {{ pitch.user.username }}</strong></p>
+                <a href="{{url_for('main.comment',pitch_id=pitch.id)}}" class="btn btn-success">Comment</a>
             </div>
             </div>
             </div>
@@ -44,6 +46,7 @@
                     <div class="panel-body">
                 <p>{{ pitch.pitch }}</p>
                 <p><strong>by: {{ pitch.user.username }}</strong></p>
+                <a href="{{url_for('main.comment',pitch_id=pitch.id)}}" class="btn btn-success">Comment</a>
             </div>
             </div>
             </div>
@@ -58,7 +61,8 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                 <p>{{ pitch.pitch }}</p>
-                <p><strong>by: {{ pitch.user }}</strong></p>
+                <p><strong>by: {{ pitch.user.username }}</strong></p>
+                <a href="{{url_for('main.comment',pitch_id=pitch.id)}}" class="btn btn-success">Comment</a>
             </div>
             </div>
             </div>

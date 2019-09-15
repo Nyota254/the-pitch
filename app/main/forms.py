@@ -1,8 +1,13 @@
 from . import main
 from flask_wtf import FlaskForm
-from wtforms.fields import SubmitField,StringField,TextAreaField,SelectField
+from wtforms import SubmitField,StringField,TextAreaField,SelectField
 from wtforms.validators import Required
+from ..models import Pitch,Comment
 
-def PitchUploadForm(FlaskForm):
-    pitch = StringField('Pitch',validators=[Required()])
-    category = SelectField('Category',choices=[('Interview','Interview'),('Pick-up','Pick-up'),])
+class PitchUploadForm(FlaskForm):
+    pitch = TextAreaField('Pitch',validators=[Required()])
+    category = SelectField('Category',choices=[('Interview','Interview'),('Pick-up','Pick-up'),('Product','Product'),('Promotion','Promotion')])
+    submit = SubmitField('Add Pitch')
+
+class CommentsForm(FlaskForm):
+    comment = TextAreaField('comment on the post')

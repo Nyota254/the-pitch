@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<h1>Hello World</h1>
-
+<div class = "container">
+    <h1>Welcome To The Pitch</h1>
+    <a href="{{url_for('main.add_pitch')}}" class="btn btn-success">Add Pitch</a>
+    {% for pitch in pitches %}
+        <h1>{{ pitch.category }}</h1>
+        <p>{{ pitch.pitch }}</p>
+    {% endfor %}
+</div>
 {% endblock %}

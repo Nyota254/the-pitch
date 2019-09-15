@@ -3,10 +3,10 @@ from flask import render_template,redirect,url_for,flash,request
 from .forms import RegistrationForm,LoginForm
 from .. import db
 from ..models import User 
-from flask_login import login_user
+from flask_login import login_user,logout_user,login_required
 
 @auth.route('/login',methods = ['POST','GET'])
-def authentication():
+def login():
     login_form = LoginForm()
     if login_form.validate_on_submit():
         user = User.query.filter_by(email = login_form.email.data).first()
@@ -27,6 +27,12 @@ def register():
         user = User(username = form.username.data,email = form.email.data,password = form.password.data)
         db.session.add(user)
         db.session.commit()
-        return redirect(url_for('auth.authentication'))
+        return redirect(url_for('auth.login'))
     title = 'New Account Registration'
     return render_template('auth/registration.html',title = title,registration_form = form)
+
+@auth.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for("main.index"))

@@ -1,12 +1,72 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class = "container">
+<div class="container">
     <h1>Welcome To The Pitch</h1>
     <a href="{{url_for('main.add_pitch')}}" class="btn btn-success">Add Pitch</a>
-    {% for pitch in pitches %}
-        <h1>{{ pitch.category }}</h1>
-        <p>{{ pitch.pitch }}</p>
-    {% endfor %}
+    <hr>
+    <div class="row">
+        <div>
+            <h1>Product Pitches</h1>
+            {% for pitch in pitches %}
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                <div class="panel-body">
+                <p>{{ pitch.pitch }}</p>
+                <p><strong>by: {{ pitch.user }}</strong></p>
+            </div>
+            </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row">
+        <div>
+            <h1>Interview Pitches</h1>
+            {% for pitch in interview_pitch %}
+            <div class="col-md-4">
+                    <div class="panel panel-default">
+                    <div class="panel-body">
+                <p>{{ pitch.pitch }}</p>
+                <p><strong>by: {{ pitch.user }}</strong></p>
+            </div>
+            </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row">
+        <div>
+            <h1>Promotion Pitches</h1>
+            {% for pitch in promotion_pitch %}
+            <div class="col-md-4">
+                    <div class="panel panel-default">
+                    <div class="panel-body">
+                <p>{{ pitch.pitch }}</p>
+                <p><strong>by: {{ pitch.user.username }}</strong></p>
+            </div>
+            </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row">
+        <div>
+            <h1>Pick-up Pitches</h1>
+            {% for pitch in pickup_pitch %}
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                <p>{{ pitch.pitch }}</p>
+                <p><strong>by: {{ pitch.user }}</strong></p>
+            </div>
+            </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
 </div>
 {% endblock %}

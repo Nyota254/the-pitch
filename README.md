@@ -15,8 +15,7 @@ This is a web app that allows users to view submit and comment on various catego
 ## Setup/Installation Requirements
 * Ensure that Python is installed on your machine if not please visit the python website and download the latest version python 3.6
 * Fork the repository and either download the project or clone it to your machine
-* Navigate to the newsapi site here -> https://newsapi.org and register for an api key
-* Register the api key as an environment variable in your terminal as follows
+* Register the secret key as an environment variable in your terminal as follows
 ```
 export SECRET_KEY=<your-secret-key>
 ```

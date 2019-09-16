@@ -5,15 +5,21 @@
 <div>
     <div class="col-md-4">
         <div class="panel panel-default">
+            <div class="panel-heading">Pitch</div>
             <div class="panel-body">
                 <p>{{ pitch.pitch }}</p>
                 <p><strong>by: {{ pitch.user.username }}</strong></p>
             </div>
         </div>
         <div>
+            <h1>Comments</h1>
             {% for comment in comments %}
-                <p>{{ comment.user.username }}</p>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                <p>Comment By:{{ comment.user.username }}</p>
                 <p>{{ comment.comment }}</p>
+            </div>
+            </div>
             {% endfor %}
         </div>
     </div>

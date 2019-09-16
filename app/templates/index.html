@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container">
     <h1>Welcome To The Pitch</h1>
-    <a href="{{url_for('main.add_pitch')}}" class="btn btn-success">Add Pitch</a>
+    <a href="{{url_for('main.add_pitch')}}" class="btn btn-primary">Add Pitch</a>
     <hr>
     <div class="row">
         <div>
@@ -11,10 +11,11 @@
             {% for pitch in pitches %}
             <div class="col-md-4">
                 <div class="panel panel-default">
+                    <div class="panel-heading">Product Pitch</div>
                 <div class="panel-body">
                 <p>{{ pitch.pitch }}</p>
                 <p><strong>by: {{ pitch.user.username }}</strong></p>
-                <a href="{{url_for('main.comment',pitch_id=pitch.id)}}" class="btn btn-success">Comment</a>
+                <a href="{{url_for('main.comment',pitch_id=pitch.id)}}" class="btn btn-primary">Comment</a>
             </div>
             </div>
             </div>
@@ -27,10 +28,11 @@
             {% for pitch in interview_pitch %}
             <div class="col-md-4">
                     <div class="panel panel-default">
+                        <div class="panel-heading">Interview Pitch</div>
                     <div class="panel-body">
                 <p>{{ pitch.pitch }}</p>
                 <p><strong>by: {{ pitch.user.username }}</strong></p>
-                <a href="{{url_for('main.comment',pitch_id=pitch.id)}}" class="btn btn-success">Comment</a>
+                <a href="{{url_for('main.comment',pitch_id=pitch.id)}}" class="btn btn-primary">Comment</a>
             </div>
             </div>
             </div>
@@ -43,10 +45,11 @@
             {% for pitch in promotion_pitch %}
             <div class="col-md-4">
                     <div class="panel panel-default">
+                        <div class="panel-heading">Promotion Pitch</div>
                     <div class="panel-body">
                 <p>{{ pitch.pitch }}</p>
                 <p><strong>by: {{ pitch.user.username }}</strong></p>
-                <a href="{{url_for('main.comment',pitch_id=pitch.id)}}" class="btn btn-success">Comment</a>
+                <a href="{{url_for('main.comment',pitch_id=pitch.id)}}" class="btn btn-primary">Comment</a>
             </div>
             </div>
             </div>
@@ -59,10 +62,11 @@
             {% for pitch in pickup_pitch %}
             <div class="col-md-4">
                 <div class="panel panel-default">
+                    <div class="panel-heading">Pick-up Pitch</div>
                     <div class="panel-body">
                 <p>{{ pitch.pitch }}</p>
                 <p><strong>by: {{ pitch.user.username }}</strong></p>
-                <a href="{{url_for('main.comment',pitch_id=pitch.id)}}" class="btn btn-success">Comment</a>
+                <a href="{{url_for('main.comment',pitch_id=pitch.id)}}" class="btn btn-primary">Comment</a>
             </div>
             </div>
             </div>

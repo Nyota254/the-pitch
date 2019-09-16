@@ -40,8 +40,15 @@
     <h1>My Pitches</h1>
     {% for mypitch in my_pitches %}
     <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">My Pitch</div>
+      <div class="panel-body">
+    <div class="col-md-4">
         {{ mypitch.pitch }}
+      </div>
     </div>
+    </div>
+  </div>
     {% endfor %}
 
 </div>

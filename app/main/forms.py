@@ -10,5 +10,9 @@ class PitchUploadForm(FlaskForm):
     submit = SubmitField('Add Pitch')
 
 class CommentsForm(FlaskForm):
-    comment = TextAreaField('comment on the post')
+    comment = TextAreaField('comment on the post',validators=[Required()])
     submit = SubmitField('Add Comment')
+
+class UpdateProfile(FlaskForm):
+    bio = StringField('About You',validators=[Required()])
+    submit = SubmitField('Add Bio')

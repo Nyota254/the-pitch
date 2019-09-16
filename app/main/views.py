@@ -1,7 +1,7 @@
 from . import main
 from flask import render_template,redirect,url_for
 from flask_login import login_required,current_user,login_user,logout_user
-from .forms import PitchUploadForm,CommentsForm
+from .forms import PitchUploadForm,CommentsForm,UpdateProfile
 from .. import db
 from ..models import Pitch,Comment,User
 
@@ -44,3 +44,28 @@ def comment(pitch_id):
     # comments = Comment.query.all()
     title = 'Pitch Discussion'
     return render_template('pitchdiscussion.html',title = title,pitch = pitch,comment_form = comment,comments=comments)
+
+@main.route('/profile/<username>')
+@login_required
+def profile(username):
+    user = User.query.filter_by(username = username).first()
+
+    if user is None:
+        abort(404)
+
+    return render_template('profile/profile.html',user = user)
+
+@main.route('/user/<username>/update', methods = ['GET','POST'])
+@login_required
+def profle_update(username):
+    user = User.query.filter_by(username = username).first()
+    form = UpdateProfile()
+    if form.validate_on_submit():
+        user.bio = form.bio.data
+        db.session.add(user)
+        db.session.commit()
+        return redirect(url_for('.profile',username = user.username))
+
+    return render_template('profile/update.html',form= form)
+
+

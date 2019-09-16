@@ -49,11 +49,13 @@ def comment(pitch_id):
 @login_required
 def profile(username):
     user = User.query.filter_by(username = username).first()
+    userid = user.id
+    my_pitches = Pitch.query.filter_by(users_id = userid).all()
 
     if user is None:
         abort(404)
 
-    return render_template('profile/profile.html',user = user)
+    return render_template('profile/profile.html',user = user,my_pitches = my_pitches)
 
 @main.route('/user/<username>/update', methods = ['GET','POST'])
 @login_required

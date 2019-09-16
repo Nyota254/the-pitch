@@ -1,8 +1,8 @@
 from . import main
-from flask import render_template,redirect,url_for
+from flask import render_template,redirect,url_for,request
 from flask_login import login_required,current_user,login_user,logout_user
 from .forms import PitchUploadForm,CommentsForm,UpdateProfile
-from .. import db
+from .. import db,photos
 from ..models import Pitch,Comment,User
 
 @main.route('/')
@@ -69,5 +69,16 @@ def profle_update(username):
         return redirect(url_for('.profile',username = user.username))
 
     return render_template('profile/update.html',form= form)
+
+@main.route('/user/<username>/update/pic',methods= ['POST'])
+@login_required
+def update_pic(username):
+    user = User.query.filter_by(username = username).first()
+    if 'photo' in request.files:
+        filename = photos.save(request.files['photo'])
+        path = f'photos/{filename}'
+        user.profile_pic_path = path
+        db.session.commit()
+    return redirect(url_for('main.profile',username=username))
 
 

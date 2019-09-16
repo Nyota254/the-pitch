@@ -32,14 +32,15 @@ def add_pitch():
 @login_required
 def comment(pitch_id):
     comment = CommentsForm()
+    current_pitch = Pitch.query.filter_by(id = pitch_id).first()
     if comment.validate_on_submit():
         comment = comment.comment.data
-        new_comment = Comment(comment = comment,user = current_user)
+        new_comment = Comment(comment = comment,user = current_user,pitch = current_pitch)
         db.session.add(new_comment)
         db.session.commit()
         # return redirect(url_for('.comment'))
     pitch = Pitch.query.get_or_404(pitch_id)
-    # comments = Comment.get_comments(pitch_id)
-    comments = Comment.query.all()
+    comments = Comment.get_comments(pitch_id)
+    # comments = Comment.query.all()
     title = 'Pitch Discussion'
     return render_template('pitchdiscussion.html',title = title,pitch = pitch,comment_form = comment,comments=comments)

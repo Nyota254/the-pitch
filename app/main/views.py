@@ -31,19 +31,28 @@ def add_pitch():
 @main.route('/pitchdiscussion/<int:pitch_id>/comment',methods=['POST','GET'])
 @login_required
 def comment(pitch_id):
-    comment = CommentsForm()
+    # comment = CommentsForm()
     current_pitch = Pitch.query.filter_by(id = pitch_id).first()
-    if comment.validate_on_submit():
-        comment = comment.comment.data
+    if request.method == "POST":
+        comment = request.form.get("comment")
+        # pitch = Pitch.query.get_or_404(pitch_id)
+        # comments = Comment.get_comments(pitch_id)
         new_comment = Comment(comment = comment,user = current_user,pitch = current_pitch)
         db.session.add(new_comment)
         db.session.commit()
-        # return redirect(url_for('.comment'))
     pitch = Pitch.query.get_or_404(pitch_id)
     comments = Comment.get_comments(pitch_id)
-    # comments = Comment.query.all()
+    # if comment.validate_on_submit():
+    #     comment = comment.comment.data
+    #     new_comment = Comment(comment = comment,user = current_user,pitch = current_pitch)
+    #     db.session.add(new_comment)
+    #     db.session.commit()
+    #     # return redirect(url_for('.comment'))
+    # pitch = Pitch.query.get_or_404(pitch_id)
+    # comments = Comment.get_comments(pitch_id)
+    # # comments = Comment.query.all()
     title = 'Pitch Discussion'
-    return render_template('pitchdiscussion.html',title = title,pitch = pitch,comment_form = comment,comments=comments)
+    return render_template('pitchdiscussion.html',title = title,pitch = pitch,comments=comments)
 
 @main.route('/profile/<username>')
 @login_required

@@ -2,7 +2,7 @@
 ####  This is a web app that allows users to view submit and comment on various categories of one minuite pitches,15-Sep-2019
 #### By **Kingecha Kevin Nyota**
 ## Link to live site
-
+You can view the site here ---> https://the-pitch1.herokuapp.com
 
 ## Description
 This is a web app that allows users to view submit and comment on various categories of one minuite pitches.The main reson behind this site is to allow users see various pitches and use them wisely to impress since it only takes one minuite to impress somebody

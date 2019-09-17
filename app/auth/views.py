@@ -4,21 +4,32 @@ from .forms import RegistrationForm,LoginForm
 from .. import db
 from ..models import User
 from flask_login import login_user,logout_user,login_required
+from werkzeug.security import check_password_hash
 
 @auth.route('/login',methods = ['POST','GET'])
 def login():
     login_form = LoginForm()
+    title = 'authentication for the pitch'
     if login_form.validate_on_submit():
         user = User.query.filter_by(email = login_form.email.data).first()
-        login_user(user,remember=login_form.remember.data)
-        return redirect(request.args.get('next') or url_for('main.index'))
-        # if user != None and user.verify_password(login_form.password.data):
+        # login_user(user,remember=login_form.remember.data)
+        # return redirect(request.args.get('next') or url_for('main.index'))
+        # if user is not None and user.verify_password(login_form.password.data):
         #     login_user(user,remember=login_form.remember.data)
-        #     return redirect(request.args.get('next') or url_for('main.index'))
+        if user == None:
+            flash('Invalid username or password')
+            return render_template("auth/login.html",login_form = login_form,title = title)
+        is_correct_password = check_password_hash(user.password_hash,login_form.password.data)
+        if is_correct_password == False:
+            flash('Invalid username or password')
+            return render_template("auth/login.html",login_form = login_form,title = title)
+        else:
+            login_user(user,remember=login_form.remember.data)
+            return redirect(request.args.get('next') or url_for('main.index'))
         # else:
-        #     flash('Invalid username or password')
+        # flash('Invalid username or password')
 
-    title = 'authentication for the pitch'
+    
     return render_template('auth/login.html',login_form = login_form,title = title)
 
 

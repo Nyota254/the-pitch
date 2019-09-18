@@ -1,10 +1,11 @@
 from . import auth
 from flask import render_template,redirect,url_for,flash,request
 from .forms import RegistrationForm,LoginForm
-from .. import db
+from .. import db,mail
 from ..models import User
 from flask_login import login_user,logout_user,login_required
 from werkzeug.security import check_password_hash
+from flask_mail import Message
 
 @auth.route('/login',methods = ['POST','GET'])
 def login():
@@ -40,6 +41,8 @@ def register():
         user = User(username = form.username.data,email = form.email.data,password = form.password.data)
         db.session.add(user)
         db.session.commit()
+        message = Message("Hello Welcome to the pitch",sender=("The Pitch","devnyota254@gmail.com"),recipients=[form.email.data])
+        mail.send(message)
         return redirect(url_for('auth.login'))
     title = 'New Account Registration'
     return render_template('auth/registration.html',title = title,registration_form = form)

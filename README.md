@@ -15,9 +15,25 @@ This is a web app that allows users to view submit and comment on various catego
 ## Setup/Installation Requirements
 * Ensure that Python is installed on your machine if not please visit the python website and download the latest version python 3.6
 * Fork the repository and either download the project or clone it to your machine
+* Create a virtual environment using the following command
+```
+python3.6 -m venv --without-pip virtual
+```
+* then install the latest version of pip
+```
+curl https://bootstrap.pypa.io/get-pip.py | python
+```
 * Register the secret key as an environment variable in your terminal as follows
 ```
 export SECRET_KEY=<your-secret-key>
+```
+* Regester your Email as follows in the environment
+```
+export MAIL_USERNAME=<Your-email>
+```
+* Regester your Email Password as follows in the environment
+```
+export MAIL_PASSWORD=<Your-email-password>
 ```
 * run the application from your terminal using the following command
 ```
